@@ -1,4 +1,6 @@
-
+---
+permalink: /InFactory/
+---
 
 What is InFactory?
 ==================
