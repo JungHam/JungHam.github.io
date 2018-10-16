@@ -1,7 +1,3 @@
----
-title : InFactory : IndoorGML 데이터의 생성을 위한 RESTful 서버
-permalink : infactory
----
 
 
 What is InFactory?
