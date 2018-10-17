@@ -1,5 +1,5 @@
 ---
-permalink: /InFactory/
+permalink: /projects/InFactory/
 title: "InFactory : IndoorGML 데이터 생성을 위한 RESTful 서버" 
 ---
 
