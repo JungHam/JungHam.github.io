@@ -25,9 +25,6 @@ All IndoorGML complex features can be represented by this JSON format. The detai
 
 First of all, the users need to implement their own client program which sends HTTP requests to the server. If there is no client program, it is recommended to use [InSomnia](https://insomnia.rest/), which is a debugging tool for RESTful API by by communicating HTTP request to the server program.
 
-
-![Insomnia](./insomnia.PNG "Insomnia")
-
 ### Quick Start
 
 #### Terms
