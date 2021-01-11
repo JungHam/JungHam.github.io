@@ -1,1 +1,1 @@
-window.TEXT_SEARCH_DATA={'posts':[{'title':"Post with Header Image",'url':"/2018/06/01/header-image.html"},{'title':"Welcome",'url':"/2018/07/01/welcome.html"}]};
+window.TEXT_SEARCH_DATA={'posts':[{'title':"Post with Header Image",'url':"/2018/06/01/header-image.html"},{'title':"Welcome",'url':"/2018/07/01/welcome.html"},{'title':"[aiffel] Day 9",'url':"/2021/01/08/AIFFEL-DAY-9.html"},{'title':"[aiffel] Day 10",'url':"/2021/01/11/AIFFEL-DAY-10.html"}]};
