@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="ko-KR">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[aiffel] Day 10 - Hello, UserErrorWorld!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[aiffel] Day 11 - Hello, UserErrorWorld!</title>
 
-<meta name="description" content="20210111오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다.CS231n-03-02Optimization계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 l...">
-<link rel="canonical" href="/2021/01/11/AIFFEL-DAY-10.html"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="20210112부제 : 스티커 사진 프로그램 만들기오늘 노드에서는 얼굴 인식의 방법과 얼굴 인식 결과를 간단하게 응용해서 얼굴에 스티커를 붙이는 프로그램을 작성했다.OpenCV의 기능들을 사용하는 게 중요했는데, OpenCV가 처리하는 이미지 데이터의 원하는 부분에 제대로 접근하려...">
+<link rel="canonical" href="/2021/01/12/AIFFEL-DAY-11.html"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -279,111 +279,46 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[aiffel] Day 10</h1></header><span class="split-space">&nbsp;</span>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[aiffel] Day 11</h1></header><span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
             title="Github에서 확인하기"
-            href="https://github.com/JungHam/JungHam.github.io/tree/master/_posts/2021-01-11-[AIFFEL]-DAY-10.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[aiffel] Day 10"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 11일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-11T00:00:00+09:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            href="https://github.com/JungHam/JungHam.github.io/tree/master/_posts/2021-01-12-[AIFFEL]-DAY-11.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[aiffel] Day 11"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 12일</span>
+            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-12T00:00:00+09:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><h1 id="20210111">20210111</h1>
+<div class="article__content" itemprop="articleBody"><h1 id="20210112">20210112</h1>
 
-<p>오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다.</p>
+<h3 id="부제--스티커-사진-프로그램-만들기">부제 : 스티커 사진 프로그램 만들기</h3>
 
-<h2 id="cs231n-03-02">CS231n-03-02</h2>
+<p>오늘 노드에서는 얼굴 인식의 방법과 얼굴 인식 결과를 간단하게 응용해서 얼굴에 스티커를 붙이는 프로그램을 작성했다.</p>
 
-<h3 id="optimization">Optimization</h3>
+<p>OpenCV의 기능들을 사용하는 게 중요했는데, OpenCV가 처리하는 이미지 데이터의 원하는 부분에 제대로 접근하려면 좌표 개념이 매우 중요하다. OpenCV는 행렬의 방식으로 데이터를 표현하고 있기 때문에, y축을 먼저 기술하고 x축을 기술하게 되며, <strong>좌상단이 원점</strong>이다.</p>
 
-<p>계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까.</p>
+<p><img src="https://t1.daumcdn.net/cfile/tistory/2610B8475436287821" alt="카이제곱 :: '컴퓨터비전/영상처리' 카테고리의 글 목록 (5 Page)" /></p>
 
-<p>loss를 줄이는 방법은 Random search 방법이 있다.  (정확도 15.5퍼센트 정도 나온다고…)</p>
+<p>이 좌표가 오늘의 핵심 키포인트. tmi로 계속 3차원 데이터를 다루다가 2차원 데이터를 다루게 되니 조금 어색했다. 3차원 좌표계는 또 달라서…</p>
 
-<p>두 번째 방법으로 경사의 기울기에 따라서 길을 찾아볼까?(NN, Linear regression)</p>
+<p>그리고 HOG 모델을 통해 얼굴의 특이점(landmark)을 추출해 내어 사진에서 얼굴을 찾을 수 있었다. 간단히 설명하면 이미지를 일정 구역들로 나누고 , 그 안에서 Gradient를 찾아낸다. 이 Gradient에서 얼굴 패턴으로 보이는 것을 찾아낸다.</p>
 
-<p>특정 지점에서 미분을 해서 기울기를 구해보자. 그렇다면 각 변수에 대한 편미분함수의 조합이 되겠지. 유닛벡터와 gradient의 조합이 해당 지점에서의 기울기를 알려줄 것이다.</p>
+<p><img src="https://miro.medium.com/max/800/1*HtgQZ4guaIo8wflbsR1MLw.png" alt="Image for post" /></p>
 
-<h5 id="수치적인-방법">수치적인 방법</h5>
+<p><img src="https://blog.kakaocdn.net/dn/c8fGmV/btqGQcZBwNz/JzcH66lqvnxL7WDd3xo7EK/img.png" alt="얼굴인식 출입통제 프로그램을 만들어보세요.(유튜브 소개)" /></p>
 
-<p>현재 W-&gt;W+h(W의 각 dimension에 대해서 이를 반복한다.)-&gt;gradient인 dW 확인 =&gt; 이거 진짜 느리고 각 dimension에 대해서 함수 계산을 다시 계산해야 해서 시간 너무 걸린다. <strong>다만 디버깅을 위해서 쓰일 수 있다.</strong> 유닛 테스트 처럼. 이때는 파라미터를 줄여서 실시한다. (gradient check)</p>
+<p>우리가 쓰는 카메라 어플에서 얼굴을 인식하는 방법 중 하나가 이 랜드마크를 사용하는 방법이라고 한다.</p>
 
-<p>정리하면 근접적이고, 느리고, 적기에는 편하다.</p>
+<p>그리고는 스티커 사이즈를 얼굴 이미지에 따라 크기를 조정하고, 이미지 가공을 하게 된다. 스티커를 놓을 자리를 랜드마크의 좌표에 따라서 결정하고, 비율을 랜드마크를 이용해서 조절하게 된다.</p>
 
-<h5 id="분석적인-방법">분석적인 방법</h5>
+<p>이미지는 numpy의 array 타입으로 다룬다. 그리고 OpenCV의 기능을 활용하면 이미지 간의 연산이 가능하다. 이 둘을 적절히 조합하면 스티커를 이미지 위에 적절히 올릴 수 있다.</p>
 
-<p>시간을 축소하기 위해 걸리는 방식 : loss function을 적어놓고 미분함수를 구한 후 이의 극한을 구한다.</p>
+<h4 id="후기">후기</h4>
 
-<p>정리하면 빠르고, 정확하다. 근데 실수하기 쉬움.</p>
+<p>지금은 단순히 스티커가 놓일 위치를 해당하는 영역의 랜드마크들을 둘러싸는 bounding box로 구하고 있는데, 좀 더 정밀하게 하려면 랜드마크를 정확히 둘러싸는 minimum bounding box를 구하고,  affine transformation을 통해 얼굴의 각도가 틀어진다거나 하는 그런 경우에 대비할 수 있을 것이다.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>![Tuning the learning rate in Gradient Descent</td>
-      <td>Datumbox](https://blog.datumbox.com/wp-content/uploads/2013/10/gradient-descent.png)</td>
-    </tr>
-  </tbody>
-</table>
+<p>노드 이제 정리하고 회고만 넣으면 끝!</p>
 
-<h5 id="gradient-descent">Gradient descent</h5>
-
-<p>W를 임의의 값으로 초기화한다. 그리고 gradient(접평면에 수직인 백터)가 -로 나오는 방향으로 weight를 조정해줄 것이다. 스텝 사이즈를 통해서 학습을 했을 때, 그 학습의 속도를 Learning Rate라고 한다. Step size는 하이퍼파라미터의 하나이다. 학습의 방향에 중요한 역할을 한다.</p>
-
-<p>효과적인 Gradient descent를 위해서 이전 Gradient descent 결과에 피드백을 주는 방법이 있다.</p>
-
-<p>Q. step size vs learning rate vs batch size</p>
-
-<p>step size : 보폭의 크기</p>
-
-<p>learning rate : 보폭의 크기 내에서도 한번에 학습하는 정도…?</p>
-
-<p>Gradient descent에 대해서 더 참고하려면 여기를~</p>
-
-<p>https://seamless.tistory.com/38</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/993D383359D86C280D" alt="img" /></p>
-
-<h5 id="stochastic-gradient-descentsgd">Stochastic Gradient Descent(SGD)</h5>
-
-<p>만약 N이 엄청나게 크면 어떡하지? 실제 gradient를 계산하려면 N개의 데이터를 돌면서 다 반영해야 할 것이다. 그래서 전체 데이터 셋의 gradient와 loss를 다 계산하기 보다는 Minibatch를 쓴다.(2의 승수를 주로 쓴다.) 그러니까 전체 집단 보다 데이터 셋에서 임의의 minibatch를 구해서 거기서 loss와 gradient를 구한다.</p>
-
-<p>cf) Optimizer 계보 참조해서 넣기</p>
-
-<h5 id="image-features-학습하기">Image Features 학습하기</h5>
-
-<p>이전에는 여러 속성들을 벡터로 엮어서 Linear classification에 입력했다. Feature들을 transform해서 선형 분류가 되도록 바꾼다거나. 예를 들자면 컬러 히스토그램이 있다. 이미지에서 Hue값만 뽑아서 색깔 테이블에 매칭해 보는 것이다.</p>
-
-<p>Histogram Oriented Gradient : local gradient을 통해서 각 local별로 어떤 edge가 존재하는지 알아볼 수 있다. 그리고 해당 local에서 어떤 vector가 많이 등장하는지 양동이에 담는다. 예를 들어 자연어 처리에서 Bag of Words에서 문장의 여러 단어의 발생 빈도를 재서 양동이에 담는 경우를 떠올릴 수 있다. 이미지의 경우는 많은 이미지를 구해서, 이 이미지를 조각조각낸 후, 그 조각에서 
-“virtual words”를 찾아낸다. 이를 모은 것을 “code book”이라고 할 때, 이 code book에 따라 이미지를 분류할 수 있을 것이다.</p>
-
-<p>10년 전만 해도 이미지 입력-&gt;BOW/HOG-&gt;특징 추출-&gt;분류기에 입력. 한번 이미지의 속성이 추출되면, 이는 변하지 않는다. 분류기만 학습이 될 뿐.</p>
-
-<p>딥러닝은 이제 이 속성까지 스스로 추출해 낸다는 것!</p>
-
-<h2 id="cs231-04-01">CS231-04-01</h2>
-
-<h3 id="backpropagation-and-neural-networks">Backpropagation and Neural Networks</h3>
-
-<p>어떻게 분석적인 방법을 통해 gradient descent를 실행하는가?</p>
-
-<p>computational graph를 그려서 뉴럴 네트워크의 구조를 설명하더라.</p>
-
-<h5 id="backpropagation">Backpropagation</h5>
-
-<p>뒤에서부터 앞으로 반대방향으로 편미분을 한다.</p>
-
-<p>그렇다면 Backpropagation을 왜 하냐?(What is backpropagation really doing?) : 해당 네트워크가 제대로 학습하고 있는지를 알아보기 위해서 디버깅하는 과정이다. output으로 loss값을 구했다면, 이 다음 학습을 위해 weight를 새롭게 정비해야 한다. 따라서 역으로 거슬러 올라가면서 weight 값들을 변경하게 된다.</p>
-
-<p>local gradient (편미분을 통해서)</p>
-
-<p>해당 노드에서 local gradient를 구할려면 이전 노드 결과 x, y가 있다 치면 최종 loss function을 x,y로 편미분한 값들을 구한다. (chain rule을 통해 편미분 구함) output 값인 loss값이 상수이기 때문에 여기서 local gradient를 구할 수 있고, 이는 이전의 W에 -피드백을 하기 위해 쓰인다.(Gradient가 -여야 아래로 내려가는 방향의 피드백을 할 수 있기 때문에. 그래프를 생각해 보자.)</p>
-
-<p>결론 : 정방향으로 갈 때는 모델에 데이터가 지나가면서 최종 학습 결과를 내놓는다. 역방향으로 갈 때는 최종 학습 결과와 loss값을 이용해서 각 레이어 사이의 weight값을 조정한다. 왔다 갔다, 핑퐁핑퐁.</p>
-
-<h3 id="후기">후기</h3>
-
-<p>아침에 진짜 읽어볼 양이 많았다. 노드를 수행하기가 좀 버거웠고, 아침에 약한 타입임을 다시 한번 느꼈다. 이런. 오후 시간은 Backpropagation이 왜 이루어지는지 드디어 알아냈다! 학부시간에 주입식으로 들었던 시간들이 억울할 지경이다. 오늘도 이렇게 한발짝 나아간다.</p>
-
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-01-11T00:00:00+09:00"><!-- start custom article footer snippet -->
+<p>오늘 노드 진행한 코드는 후에 보완할 예정입니다.</p>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-01-12T00:00:00+09:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">구독하기</a></div>
@@ -394,7 +329,7 @@
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2021/01/08/AIFFEL-DAY-9.html">[aiffel] Day 9</a></div><div class="next"><span>다음</span><a href="/2021/01/12/AIFFEL-DAY-11.html">[aiffel] Day 11</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2021/01/11/AIFFEL-DAY-10.html">[aiffel] Day 10</a></div></div></div>
 
 </div>
 
