@@ -1,5 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2021-01-13T00:42:57+09:00</updated><id>/feed.xml</id><title type="html">Hello, UserErrorWorld!</title><subtitle>Your Site Description
-</subtitle><author><name>Hyemi Jeong</name></author><entry><title type="html">[aiffel] Day 11</title><link href="/2021/01/12/AIFFEL-DAY-11.html" rel="alternate" type="text/html" title="[aiffel] Day 11" /><published>2021-01-12T00:00:00+09:00</published><updated>2021-01-12T00:00:00+09:00</updated><id>/2021/01/12/%5BAIFFEL%5D-DAY-11</id><content type="html" xml:base="/2021/01/12/AIFFEL-DAY-11.html">&lt;h1 id=&quot;20210112&quot;&gt;20210112&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2021-01-26T01:01:10+09:00</updated><id>/feed.xml</id><title type="html">Hello, UserErrorWorld!</title><subtitle>Your Site Description
+</subtitle><author><name>Hyemi Jeong</name></author><entry><title type="html">[aiffel] Day 20</title><link href="/2021/01/26/AIFFEL-DAY-20.html" rel="alternate" type="text/html" title="[aiffel] Day 20" /><published>2021-01-26T00:00:00+09:00</published><updated>2021-01-26T00:00:00+09:00</updated><id>/2021/01/26/%5BAIFFEL%5D-DAY-20</id><content type="html" xml:base="/2021/01/26/AIFFEL-DAY-20.html">&lt;h1 id=&quot;cs231n-05&quot;&gt;CS231n-05&lt;/h1&gt;
+
+&lt;p&gt;포스팅이 매우 격조했습니다. 한동안 컨디션이 매우 안좋았기 때문이죠. 주말동안 푹 쉰 건 아니지만 잘 먹어서 좀 나아진 듯 합니다. 매일 매일 기록하자! 가 모토인데 이제는 매일 매일 잠 잘 자고, 잘 따라가고, 적극적인 자세로 임하는 것이 목표가 되었습니다. 여러분, 건강하세요.&lt;/p&gt;
+
+&lt;p&gt;오늘의 그림 출처는 여기 : https://cding.tistory.com/5&lt;/p&gt;
+
+&lt;h4 id=&quot;convnets의-원리&quot;&gt;ConvNets의 원리&lt;/h4&gt;
+
+&lt;p&gt;4강을 들은 것을 정리를 안했는데, 4강 맨 끝에서 Fully Connected Layer에 대한 개념이 나온다. 그래서 잠깐 4강 끝에서 나왔던 Fully Connected Function에 대한 개념을 짚고 넘어가려고 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;fully-connected-function&quot;&gt;Fully Connected Function&lt;/h4&gt;
+
+&lt;p&gt;layer에 대한 input을 벡터 x라고 했을때 선형 함수의 형태로 score function을 구한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/9955C8425B5741051C&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;레이어 하나를 거치는 것은 W1을 곱하는 것이고, W2를 곱하게 되면 레이어 하나를 더 거치게 되는 것이다. 이 때, 다음 레이어로 가기 전에 그 전의 레이어의 결과물을 정제한다. 위의 그림에서 max 함수가 이런 역할을 하게 되며, 이를 &lt;strong&gt;activation function&lt;/strong&gt;이라고 한다. activation function은 비선형 함수를 쓰게 되며,  비선형 함수의 종류는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/99EB714D5B57410D16&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;왜 비선형 함수를 쓰게 되냐면, 만약 이 때도 선형함수를 쓰게 되면 중간 결과값에 대해 가중치를 제대로 줄 수 없기 때문이다. 이 전에 인간의 신경망에 대한 설명이 나오는데, 차라리 역치 개념을 써놨더라면 ‘아. 신경망과 인공 지능망은 이런 공통점이 있구나!’ 라고 이해했을 걸…&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;하나의 레이어는 여러 개의 노드로 이루어져 있다. 레이어에 속한 하나의 노드에서는 다음과 같은 행동이 발생한다.  (이전 노드의 결과값) * (노드와 노드 간의 가중치)의 결과값 들을 받아들여 모두 더한다.(Wx, linear) 그리고 이 값에 activation함수를 적용해서 다음 노드로 전할 값을 결정한다.(non-linear)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;해당 구조에서 Layer를 여러개 두면 어떻게 될까? 다음과 같은 결과가 나오겠지.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(output) = Wn * max(Wn-1 * max(Wn-2...W2 * max(W1 * x, 0),0),0) (여기서 output layer는 마지막 layer의 노드수 * 1의 크기를 가지는 Wn을 통해 도출된다.)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;이렇게 되면 해당 layer에 있는 모든 노드들은 다음 노드에 관여하게 되는 구조가 나온다. 그래서 Fully Connected Layer라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/99DC70435B57410D02&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이제 다시 돌아가서, 5강의 처음은 Fully Connected Layer(&lt;strong&gt;Dense layer&lt;/strong&gt;)에 대한 아이디어로부터 출발하게 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;convolutional-neural-networks의-시작&quot;&gt;Convolutional Neural Networks의 시작&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/991CF9415B61925C1A&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;행렬 곱은 (3072 x 1) * (10 x 3072) = (1 * 10) 이 나오게 된다. 이전 시간에 배웠던 Fully Connected Network의 원리를 생각해 보면 모든 input값은 다음 노드로 전달되니까 3072 x 1의 형태로 만든 것이고, hidden layer는 하나, class는 10개라서 output layer 모습이 1 * 10이 된다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 Convolutional Neural Network는 Fully Connected Layer에서 어떻게 나아갔을까?&lt;/p&gt;
+
+&lt;p&gt;데이터의 특성을 잘 반영하기 위해서 &lt;strong&gt;filter&lt;/strong&gt;의 개념을 도입했다.&lt;/p&gt;
+
+&lt;p&gt;경험이 쌓이면 도움이 된다더니, 예전에 막내 국어 문제 풀어줄 때 나왔던 지문이 도움이 될 줄이야.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/9989CC495D342D2D2A&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 문제는 2018년도 고2 모의평가 3월에 나왔던 지문인데, 풀어주면서도 ‘이걸 애들이 시간내에 풀 수 있을 거라고?’ 하며 연신 고개를 주억거렸던 기억이 난다. 이 그림은 필터를 통해 어떻게 이미지의 특성을 잡아내는지 그 예시를 들었다. 이 다음에 이 이미지를 보고 알맞게 추론한 것을 고르시오. 라는 문제와 함께 그림이 함께 나오는 예시가 나와서 명확히 기억한다.&lt;/p&gt;
+
+&lt;p&gt;필터는 이미지의 좌상단부터 훑는다. 그리고 필터의 모든 요소를 가지고 내적을 하며, 하나의 값을 얻게 된다. 이 과정이 위 그림의 첫번째 줄에 해당한다. 이 연산의 결과를 activation map에 저장하게 된다.&lt;/p&gt;
+
+&lt;p&gt;32x32x3을 5x5x3의 필터와 활성화 함수로 훑었을 때, 28x28x3의 activation map이 나온다.(n칸씩 뗄 지는 파라미터로 결정 =&amp;gt; stride라고 한다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/990AEF335B61926033&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;정리하면 하나의 CNN은 filtering과 activation을 거친다. 그리고 하나의 activation map은 input data의 한 특성을 나타낸다. 바로 이렇게. 이 과정들을 반복하면  low-level features -&amp;gt; mid-level features -&amp;gt; high-level features 순으로 추출할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/9987664E5B61D3FD07&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그래서 전체적인 Convolutional Neural Network는 다음과 같이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/99546A3F5B61926206&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데 아까전의 예시에서는 한칸씩 필터를 밀었다. 필터를 한칸씩 말고 n칸씩 밀 수 있지 않을까? 이 때 어정쩡하게 남는 부분은 잘리게 되지 않을까? 그리고 input 데이터의 가장자리는 중앙보다 반영되는 횟수가 적지 않을까? 또 n칸씩 확 확 밀면 Layer 몇 개만 거쳐도 중간 값의 차원이 확 줄지 않을까?&lt;/p&gt;
+
+&lt;p&gt;그래서 &lt;strong&gt;Padding&lt;/strong&gt;의 개념이 나오게 된다. Padding은 원본 데이터의 가장자리에 0으로 채운 행과 열을 더함으로써 위의 두가지 문제를 해결하게 된다.&lt;/p&gt;
+
+&lt;p&gt;테두리에 padding을 준다 : (N-F)/(stride+1). padding은 0으로 채운다.&lt;/p&gt;
+
+&lt;p&gt;그리고 중간에 이해 안가는 부분이 있어서 데려와봤다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/99CD73375B61D6EF18&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;필터를 언급할 때 input 데이터의 depth에 대해서는 생략하고 얘기하더라. 적어도 해당 강의에서는. 그래서 조원들이랑 공부할 때 더더욱 헷갈렸다. 그림을 해석하면 다음과 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1x1 conv with 32 filters : 1x1x64의 filter를 사용하며, 이를 32번 반복한다.&lt;/li&gt;
+  &lt;li&gt;결과값 56 x56 x 32 : 1x1x64를 한칸씩 밀어서 필터를 적용하고, 이에 activation function을 적용해서 만든 activation map의 크기는 56x56x1인데 이 과정을 32번 반복했으니까 depth는 32.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/9957CE405B61D6F10C&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 그림을 보니까 이전의 그림이 더 명확하게 이해되는데, 5개의 다른 필터를 사용해서 이 결과를 쌓으면 depth가 늘어난다. 그래. 필터를 다른 것을 쓴다고 얘기를 했어야지. 이 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;필터 = 신경&lt;/code&gt; 이렇게 치환해서 생각해보자.&lt;/p&gt;
+
+&lt;h4 id=&quot;pooling&quot;&gt;Pooling&lt;/h4&gt;
+
+&lt;p&gt;하지만 이 사이즈를 유지한 채로 계속해서 연산하게 된다면, 이는 성능에 영향을 주게 된다. 그래서 Pooling을 통해 Downsampling을 하게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://t1.daumcdn.net/cfile/tistory/99C286405B61D6F325&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;해당 그림은 Pooling기법 중 Max를 이용하는 Max Pooling에 대해서 설명하고 있다. 간단하다. 해당 영역에서 max값만 뽑아서 다음 값으로 넘긴다. 마치 그림의 해상도를 n분의 1로 줄일 때 처럼 말이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;fully-connected-layer-in-cnn&quot;&gt;Fully Connected Layer in CNN&lt;/h4&gt;
+
+&lt;p&gt;해당 레이어는 마지막에 쓰인다. class를 뽑아내야 하기 때문이다. 우리가 앞에서 Fully Connected Layer는 이런 것이라고 정의했기 때문에, 작동 원리를 생각해서 마지막에 이를 적용하게 되면 우리는 1x(클래스의 수) 크기를 가진 벡터를 얻을 수 있음을 알 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;오늘의-후기&quot;&gt;오늘의 후기&lt;/h4&gt;
+
+&lt;p&gt;아…진짜…어후…일단 Fully Connected Layer라는 용어를 유심히 보지 못하고 지나간 것이 화근이었다. 내가 기존에 알고 있던 기초적인 신경망 구조를 Fully Connected Layer라고 부르는 것을 몰랐다.&lt;/p&gt;
+
+&lt;p&gt;또 구체적인 예시를 들어야 할 때에는 정작 뭉뚱그려서 설명하는 강의의 방식, 표기법을 통일하지 않는 교재, 심지어 누락까지 되어 있어 이해를 더더욱 어렵게 만든다.&lt;/p&gt;
+
+&lt;p&gt;이제 확실히 알겠으니까 다음 강의를 기다려 본다. 이상 저번 강의부터 헷갈린 사람의 후기.&lt;/p&gt;</content><author><name>Hyemi Jeong</name></author><summary type="html">CS231n-05 포스팅이 매우 격조했습니다. 한동안 컨디션이 매우 안좋았기 때문이죠. 주말동안 푹 쉰 건 아니지만 잘 먹어서 좀 나아진 듯 합니다. 매일 매일 기록하자! 가 모토인데 이제는 매일 매일 잠 잘 자고, 잘 따라가고, 적극적인 자세로 임하는 것이 목표가 되었습니다. 여러분, 건강하세요. 오늘의 그림 출처는 여기 : https://cding.tistory.com/5 ConvNets의 원리 4강을 들은 것을 정리를 안했는데, 4강 맨 끝에서 Fully Connected Layer에 대한 개념이 나온다. 그래서 잠깐 4강 끝에서 나왔던 Fully Connected Function에 대한 개념을 짚고 넘어가려고 한다. Fully Connected Function layer에 대한 input을 벡터 x라고 했을때 선형 함수의 형태로 score function을 구한다. 레이어 하나를 거치는 것은 W1을 곱하는 것이고, W2를 곱하게 되면 레이어 하나를 더 거치게 되는 것이다. 이 때, 다음 레이어로 가기 전에 그 전의 레이어의 결과물을 정제한다. 위의 그림에서 max 함수가 이런 역할을 하게 되며, 이를 activation function이라고 한다. activation function은 비선형 함수를 쓰게 되며, 비선형 함수의 종류는 다음과 같다. 왜 비선형 함수를 쓰게 되냐면, 만약 이 때도 선형함수를 쓰게 되면 중간 결과값에 대해 가중치를 제대로 줄 수 없기 때문이다. 이 전에 인간의 신경망에 대한 설명이 나오는데, 차라리 역치 개념을 써놨더라면 ‘아. 신경망과 인공 지능망은 이런 공통점이 있구나!’ 라고 이해했을 걸… 하나의 레이어는 여러 개의 노드로 이루어져 있다. 레이어에 속한 하나의 노드에서는 다음과 같은 행동이 발생한다. (이전 노드의 결과값) * (노드와 노드 간의 가중치)의 결과값 들을 받아들여 모두 더한다.(Wx, linear) 그리고 이 값에 activation함수를 적용해서 다음 노드로 전할 값을 결정한다.(non-linear) 해당 구조에서 Layer를 여러개 두면 어떻게 될까? 다음과 같은 결과가 나오겠지. (output) = Wn * max(Wn-1 * max(Wn-2...W2 * max(W1 * x, 0),0),0) (여기서 output layer는 마지막 layer의 노드수 * 1의 크기를 가지는 Wn을 통해 도출된다.) 이렇게 되면 해당 layer에 있는 모든 노드들은 다음 노드에 관여하게 되는 구조가 나온다. 그래서 Fully Connected Layer라고 부른다. 이제 다시 돌아가서, 5강의 처음은 Fully Connected Layer(Dense layer)에 대한 아이디어로부터 출발하게 된다. Convolutional Neural Networks의 시작 행렬 곱은 (3072 x 1) * (10 x 3072) = (1 * 10) 이 나오게 된다. 이전 시간에 배웠던 Fully Connected Network의 원리를 생각해 보면 모든 input값은 다음 노드로 전달되니까 3072 x 1의 형태로 만든 것이고, hidden layer는 하나, class는 10개라서 output layer 모습이 1 * 10이 된다. 그렇다면 Convolutional Neural Network는 Fully Connected Layer에서 어떻게 나아갔을까? 데이터의 특성을 잘 반영하기 위해서 filter의 개념을 도입했다. 경험이 쌓이면 도움이 된다더니, 예전에 막내 국어 문제 풀어줄 때 나왔던 지문이 도움이 될 줄이야. 해당 문제는 2018년도 고2 모의평가 3월에 나왔던 지문인데, 풀어주면서도 ‘이걸 애들이 시간내에 풀 수 있을 거라고?’ 하며 연신 고개를 주억거렸던 기억이 난다. 이 그림은 필터를 통해 어떻게 이미지의 특성을 잡아내는지 그 예시를 들었다. 이 다음에 이 이미지를 보고 알맞게 추론한 것을 고르시오. 라는 문제와 함께 그림이 함께 나오는 예시가 나와서 명확히 기억한다. 필터는 이미지의 좌상단부터 훑는다. 그리고 필터의 모든 요소를 가지고 내적을 하며, 하나의 값을 얻게 된다. 이 과정이 위 그림의 첫번째 줄에 해당한다. 이 연산의 결과를 activation map에 저장하게 된다. 32x32x3을 5x5x3의 필터와 활성화 함수로 훑었을 때, 28x28x3의 activation map이 나온다.(n칸씩 뗄 지는 파라미터로 결정 =&amp;gt; stride라고 한다.) 정리하면 하나의 CNN은 filtering과 activation을 거친다. 그리고 하나의 activation map은 input data의 한 특성을 나타낸다. 바로 이렇게. 이 과정들을 반복하면 low-level features -&amp;gt; mid-level features -&amp;gt; high-level features 순으로 추출할 수 있다. 그래서 전체적인 Convolutional Neural Network는 다음과 같이 생겼다. 그런데 아까전의 예시에서는 한칸씩 필터를 밀었다. 필터를 한칸씩 말고 n칸씩 밀 수 있지 않을까? 이 때 어정쩡하게 남는 부분은 잘리게 되지 않을까? 그리고 input 데이터의 가장자리는 중앙보다 반영되는 횟수가 적지 않을까? 또 n칸씩 확 확 밀면 Layer 몇 개만 거쳐도 중간 값의 차원이 확 줄지 않을까? 그래서 Padding의 개념이 나오게 된다. Padding은 원본 데이터의 가장자리에 0으로 채운 행과 열을 더함으로써 위의 두가지 문제를 해결하게 된다. 테두리에 padding을 준다 : (N-F)/(stride+1). padding은 0으로 채운다. 그리고 중간에 이해 안가는 부분이 있어서 데려와봤다. 필터를 언급할 때 input 데이터의 depth에 대해서는 생략하고 얘기하더라. 적어도 해당 강의에서는. 그래서 조원들이랑 공부할 때 더더욱 헷갈렸다. 그림을 해석하면 다음과 같다. 1x1 conv with 32 filters : 1x1x64의 filter를 사용하며, 이를 32번 반복한다. 결과값 56 x56 x 32 : 1x1x64를 한칸씩 밀어서 필터를 적용하고, 이에 activation function을 적용해서 만든 activation map의 크기는 56x56x1인데 이 과정을 32번 반복했으니까 depth는 32. 해당 그림을 보니까 이전의 그림이 더 명확하게 이해되는데, 5개의 다른 필터를 사용해서 이 결과를 쌓으면 depth가 늘어난다. 그래. 필터를 다른 것을 쓴다고 얘기를 했어야지. 이 때 필터 = 신경 이렇게 치환해서 생각해보자. Pooling 하지만 이 사이즈를 유지한 채로 계속해서 연산하게 된다면, 이는 성능에 영향을 주게 된다. 그래서 Pooling을 통해 Downsampling을 하게 된다. 해당 그림은 Pooling기법 중 Max를 이용하는 Max Pooling에 대해서 설명하고 있다. 간단하다. 해당 영역에서 max값만 뽑아서 다음 값으로 넘긴다. 마치 그림의 해상도를 n분의 1로 줄일 때 처럼 말이다. Fully Connected Layer in CNN 해당 레이어는 마지막에 쓰인다. class를 뽑아내야 하기 때문이다. 우리가 앞에서 Fully Connected Layer는 이런 것이라고 정의했기 때문에, 작동 원리를 생각해서 마지막에 이를 적용하게 되면 우리는 1x(클래스의 수) 크기를 가진 벡터를 얻을 수 있음을 알 수 있다. 오늘의 후기 아…진짜…어후…일단 Fully Connected Layer라는 용어를 유심히 보지 못하고 지나간 것이 화근이었다. 내가 기존에 알고 있던 기초적인 신경망 구조를 Fully Connected Layer라고 부르는 것을 몰랐다. 또 구체적인 예시를 들어야 할 때에는 정작 뭉뚱그려서 설명하는 강의의 방식, 표기법을 통일하지 않는 교재, 심지어 누락까지 되어 있어 이해를 더더욱 어렵게 만든다. 이제 확실히 알겠으니까 다음 강의를 기다려 본다. 이상 저번 강의부터 헷갈린 사람의 후기.</summary></entry><entry><title type="html">[aiffel] Day 11</title><link href="/2021/01/12/AIFFEL-DAY-11.html" rel="alternate" type="text/html" title="[aiffel] Day 11" /><published>2021-01-12T00:00:00+09:00</published><updated>2021-01-12T00:00:00+09:00</updated><id>/2021/01/12/%5BAIFFEL%5D-DAY-11</id><content type="html" xml:base="/2021/01/12/AIFFEL-DAY-11.html">&lt;h1 id=&quot;20210112&quot;&gt;20210112&lt;/h1&gt;
 
 &lt;h3 id=&quot;부제--스티커-사진-프로그램-만들기&quot;&gt;부제 : 스티커 사진 프로그램 만들기&lt;/h3&gt;
 
@@ -123,16 +228,4 @@
 
 &lt;h3 id=&quot;후기&quot;&gt;후기&lt;/h3&gt;
 
-&lt;p&gt;아침에 진짜 읽어볼 양이 많았다. 노드를 수행하기가 좀 버거웠고, 아침에 약한 타입임을 다시 한번 느꼈다. 이런. 오후 시간은 Backpropagation이 왜 이루어지는지 드디어 알아냈다! 학부시간에 주입식으로 들었던 시간들이 억울할 지경이다. 오늘도 이렇게 한발짝 나아간다.&lt;/p&gt;</content><author><name>Hyemi Jeong</name></author><summary type="html">20210111 오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다. CS231n-03-02 Optimization 계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까. loss를 줄이는 방법은 Random search 방법이 있다. (정확도 15.5퍼센트 정도 나온다고…) 두 번째 방법으로 경사의 기울기에 따라서 길을 찾아볼까?(NN, Linear regression) 특정 지점에서 미분을 해서 기울기를 구해보자. 그렇다면 각 변수에 대한 편미분함수의 조합이 되겠지. 유닛벡터와 gradient의 조합이 해당 지점에서의 기울기를 알려줄 것이다. 수치적인 방법 현재 W-&amp;gt;W+h(W의 각 dimension에 대해서 이를 반복한다.)-&amp;gt;gradient인 dW 확인 =&amp;gt; 이거 진짜 느리고 각 dimension에 대해서 함수 계산을 다시 계산해야 해서 시간 너무 걸린다. 다만 디버깅을 위해서 쓰일 수 있다. 유닛 테스트 처럼. 이때는 파라미터를 줄여서 실시한다. (gradient check) 정리하면 근접적이고, 느리고, 적기에는 편하다. 분석적인 방법 시간을 축소하기 위해 걸리는 방식 : loss function을 적어놓고 미분함수를 구한 후 이의 극한을 구한다. 정리하면 빠르고, 정확하다. 근데 실수하기 쉬움. ![Tuning the learning rate in Gradient Descent Datumbox](https://blog.datumbox.com/wp-content/uploads/2013/10/gradient-descent.png) Gradient descent W를 임의의 값으로 초기화한다. 그리고 gradient(접평면에 수직인 백터)가 -로 나오는 방향으로 weight를 조정해줄 것이다. 스텝 사이즈를 통해서 학습을 했을 때, 그 학습의 속도를 Learning Rate라고 한다. Step size는 하이퍼파라미터의 하나이다. 학습의 방향에 중요한 역할을 한다. 효과적인 Gradient descent를 위해서 이전 Gradient descent 결과에 피드백을 주는 방법이 있다. Q. step size vs learning rate vs batch size step size : 보폭의 크기 learning rate : 보폭의 크기 내에서도 한번에 학습하는 정도…? Gradient descent에 대해서 더 참고하려면 여기를~ https://seamless.tistory.com/38 Stochastic Gradient Descent(SGD) 만약 N이 엄청나게 크면 어떡하지? 실제 gradient를 계산하려면 N개의 데이터를 돌면서 다 반영해야 할 것이다. 그래서 전체 데이터 셋의 gradient와 loss를 다 계산하기 보다는 Minibatch를 쓴다.(2의 승수를 주로 쓴다.) 그러니까 전체 집단 보다 데이터 셋에서 임의의 minibatch를 구해서 거기서 loss와 gradient를 구한다. cf) Optimizer 계보 참조해서 넣기 Image Features 학습하기 이전에는 여러 속성들을 벡터로 엮어서 Linear classification에 입력했다. Feature들을 transform해서 선형 분류가 되도록 바꾼다거나. 예를 들자면 컬러 히스토그램이 있다. 이미지에서 Hue값만 뽑아서 색깔 테이블에 매칭해 보는 것이다. Histogram Oriented Gradient : local gradient을 통해서 각 local별로 어떤 edge가 존재하는지 알아볼 수 있다. 그리고 해당 local에서 어떤 vector가 많이 등장하는지 양동이에 담는다. 예를 들어 자연어 처리에서 Bag of Words에서 문장의 여러 단어의 발생 빈도를 재서 양동이에 담는 경우를 떠올릴 수 있다. 이미지의 경우는 많은 이미지를 구해서, 이 이미지를 조각조각낸 후, 그 조각에서 “virtual words”를 찾아낸다. 이를 모은 것을 “code book”이라고 할 때, 이 code book에 따라 이미지를 분류할 수 있을 것이다. 10년 전만 해도 이미지 입력-&amp;gt;BOW/HOG-&amp;gt;특징 추출-&amp;gt;분류기에 입력. 한번 이미지의 속성이 추출되면, 이는 변하지 않는다. 분류기만 학습이 될 뿐. 딥러닝은 이제 이 속성까지 스스로 추출해 낸다는 것! CS231-04-01 Backpropagation and Neural Networks 어떻게 분석적인 방법을 통해 gradient descent를 실행하는가? computational graph를 그려서 뉴럴 네트워크의 구조를 설명하더라. Backpropagation 뒤에서부터 앞으로 반대방향으로 편미분을 한다. 그렇다면 Backpropagation을 왜 하냐?(What is backpropagation really doing?) : 해당 네트워크가 제대로 학습하고 있는지를 알아보기 위해서 디버깅하는 과정이다. output으로 loss값을 구했다면, 이 다음 학습을 위해 weight를 새롭게 정비해야 한다. 따라서 역으로 거슬러 올라가면서 weight 값들을 변경하게 된다. local gradient (편미분을 통해서) 해당 노드에서 local gradient를 구할려면 이전 노드 결과 x, y가 있다 치면 최종 loss function을 x,y로 편미분한 값들을 구한다. (chain rule을 통해 편미분 구함) output 값인 loss값이 상수이기 때문에 여기서 local gradient를 구할 수 있고, 이는 이전의 W에 -피드백을 하기 위해 쓰인다.(Gradient가 -여야 아래로 내려가는 방향의 피드백을 할 수 있기 때문에. 그래프를 생각해 보자.) 결론 : 정방향으로 갈 때는 모델에 데이터가 지나가면서 최종 학습 결과를 내놓는다. 역방향으로 갈 때는 최종 학습 결과와 loss값을 이용해서 각 레이어 사이의 weight값을 조정한다. 왔다 갔다, 핑퐁핑퐁. 후기 아침에 진짜 읽어볼 양이 많았다. 노드를 수행하기가 좀 버거웠고, 아침에 약한 타입임을 다시 한번 느꼈다. 이런. 오후 시간은 Backpropagation이 왜 이루어지는지 드디어 알아냈다! 학부시간에 주입식으로 들었던 시간들이 억울할 지경이다. 오늘도 이렇게 한발짝 나아간다.</summary></entry><entry><title type="html">[aiffel] Day 9</title><link href="/2021/01/08/AIFFEL-DAY-9.html" rel="alternate" type="text/html" title="[aiffel] Day 9" /><published>2021-01-08T00:00:00+09:00</published><updated>2021-01-08T00:00:00+09:00</updated><id>/2021/01/08/%5BAIFFEL%5D-DAY-9</id><content type="html" xml:base="/2021/01/08/AIFFEL-DAY-9.html"></content><author><name>Hyemi Jeong</name></author><summary type="html"></summary></entry><entry><title type="html">Welcome</title><link href="/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+09:00</published><updated>2018-07-01T00:00:00+09:00</updated><id>/2018/07/01/welcome</id><content type="html" xml:base="/2018/07/01/welcome.html">&lt;p&gt;If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:&lt;/p&gt;
-
-&lt;p&gt;You may want to &lt;a href=&quot;https://tianqi.name/jekyll-TeXt-theme/docs/en/configuration&quot;&gt;config the site&lt;/a&gt; or &lt;a href=&quot;https://tianqi.name/jekyll-TeXt-theme/docs/en/writing-posts&quot;&gt;writing a post&lt;/a&gt; next. Please feel free to &lt;a href=&quot;https://github.com/kitian616/jekyll-TeXt-theme/issues&quot;&gt;create an issue&lt;/a&gt; or &lt;a href=&quot;mailto:kitian616@outlook.com&quot;&gt;send me email&lt;/a&gt; if you have any questions.&lt;/p&gt;
-
-&lt;!--more--&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;If you like TeXt, don’t forget to give me a star. :star2:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/kitian616/jekyll-TeXt-theme/&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;amp;style=social&quot; alt=&quot;Star This Project&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Hyemi Jeong</name></author><category term="TeXt" /><summary type="html">If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me email if you have any questions.</summary></entry><entry><title type="html">Post with Header Image</title><link href="/2018/06/01/header-image.html" rel="alternate" type="text/html" title="Post with Header Image" /><published>2018-06-01T00:00:00+09:00</published><updated>2018-06-01T00:00:00+09:00</updated><id>/2018/06/01/header-image</id><content type="html" xml:base="/2018/06/01/header-image.html">&lt;p&gt;A Post with Header Image, See &lt;a href=&quot;https://tianqi.name/jekyll-TeXt-theme/samples.html#page-layout&quot;&gt;Page layout&lt;/a&gt; for more examples.&lt;/p&gt;
-
-&lt;!--more--&gt;</content><author><name>Hyemi Jeong</name></author><category term="TeXt" /><summary type="html">A Post with Header Image, See Page layout for more examples.</summary></entry></feed>
+&lt;p&gt;아침에 진짜 읽어볼 양이 많았다. 노드를 수행하기가 좀 버거웠고, 아침에 약한 타입임을 다시 한번 느꼈다. 이런. 오후 시간은 Backpropagation이 왜 이루어지는지 드디어 알아냈다! 학부시간에 주입식으로 들었던 시간들이 억울할 지경이다. 오늘도 이렇게 한발짝 나아간다.&lt;/p&gt;</content><author><name>Hyemi Jeong</name></author><summary type="html">20210111 오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다. CS231n-03-02 Optimization 계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까. loss를 줄이는 방법은 Random search 방법이 있다. (정확도 15.5퍼센트 정도 나온다고…) 두 번째 방법으로 경사의 기울기에 따라서 길을 찾아볼까?(NN, Linear regression) 특정 지점에서 미분을 해서 기울기를 구해보자. 그렇다면 각 변수에 대한 편미분함수의 조합이 되겠지. 유닛벡터와 gradient의 조합이 해당 지점에서의 기울기를 알려줄 것이다. 수치적인 방법 현재 W-&amp;gt;W+h(W의 각 dimension에 대해서 이를 반복한다.)-&amp;gt;gradient인 dW 확인 =&amp;gt; 이거 진짜 느리고 각 dimension에 대해서 함수 계산을 다시 계산해야 해서 시간 너무 걸린다. 다만 디버깅을 위해서 쓰일 수 있다. 유닛 테스트 처럼. 이때는 파라미터를 줄여서 실시한다. (gradient check) 정리하면 근접적이고, 느리고, 적기에는 편하다. 분석적인 방법 시간을 축소하기 위해 걸리는 방식 : loss function을 적어놓고 미분함수를 구한 후 이의 극한을 구한다. 정리하면 빠르고, 정확하다. 근데 실수하기 쉬움. ![Tuning the learning rate in Gradient Descent Datumbox](https://blog.datumbox.com/wp-content/uploads/2013/10/gradient-descent.png) Gradient descent W를 임의의 값으로 초기화한다. 그리고 gradient(접평면에 수직인 백터)가 -로 나오는 방향으로 weight를 조정해줄 것이다. 스텝 사이즈를 통해서 학습을 했을 때, 그 학습의 속도를 Learning Rate라고 한다. Step size는 하이퍼파라미터의 하나이다. 학습의 방향에 중요한 역할을 한다. 효과적인 Gradient descent를 위해서 이전 Gradient descent 결과에 피드백을 주는 방법이 있다. Q. step size vs learning rate vs batch size step size : 보폭의 크기 learning rate : 보폭의 크기 내에서도 한번에 학습하는 정도…? Gradient descent에 대해서 더 참고하려면 여기를~ https://seamless.tistory.com/38 Stochastic Gradient Descent(SGD) 만약 N이 엄청나게 크면 어떡하지? 실제 gradient를 계산하려면 N개의 데이터를 돌면서 다 반영해야 할 것이다. 그래서 전체 데이터 셋의 gradient와 loss를 다 계산하기 보다는 Minibatch를 쓴다.(2의 승수를 주로 쓴다.) 그러니까 전체 집단 보다 데이터 셋에서 임의의 minibatch를 구해서 거기서 loss와 gradient를 구한다. cf) Optimizer 계보 참조해서 넣기 Image Features 학습하기 이전에는 여러 속성들을 벡터로 엮어서 Linear classification에 입력했다. Feature들을 transform해서 선형 분류가 되도록 바꾼다거나. 예를 들자면 컬러 히스토그램이 있다. 이미지에서 Hue값만 뽑아서 색깔 테이블에 매칭해 보는 것이다. Histogram Oriented Gradient : local gradient을 통해서 각 local별로 어떤 edge가 존재하는지 알아볼 수 있다. 그리고 해당 local에서 어떤 vector가 많이 등장하는지 양동이에 담는다. 예를 들어 자연어 처리에서 Bag of Words에서 문장의 여러 단어의 발생 빈도를 재서 양동이에 담는 경우를 떠올릴 수 있다. 이미지의 경우는 많은 이미지를 구해서, 이 이미지를 조각조각낸 후, 그 조각에서 “virtual words”를 찾아낸다. 이를 모은 것을 “code book”이라고 할 때, 이 code book에 따라 이미지를 분류할 수 있을 것이다. 10년 전만 해도 이미지 입력-&amp;gt;BOW/HOG-&amp;gt;특징 추출-&amp;gt;분류기에 입력. 한번 이미지의 속성이 추출되면, 이는 변하지 않는다. 분류기만 학습이 될 뿐. 딥러닝은 이제 이 속성까지 스스로 추출해 낸다는 것! CS231-04-01 Backpropagation and Neural Networks 어떻게 분석적인 방법을 통해 gradient descent를 실행하는가? computational graph를 그려서 뉴럴 네트워크의 구조를 설명하더라. Backpropagation 뒤에서부터 앞으로 반대방향으로 편미분을 한다. 그렇다면 Backpropagation을 왜 하냐?(What is backpropagation really doing?) : 해당 네트워크가 제대로 학습하고 있는지를 알아보기 위해서 디버깅하는 과정이다. output으로 loss값을 구했다면, 이 다음 학습을 위해 weight를 새롭게 정비해야 한다. 따라서 역으로 거슬러 올라가면서 weight 값들을 변경하게 된다. local gradient (편미분을 통해서) 해당 노드에서 local gradient를 구할려면 이전 노드 결과 x, y가 있다 치면 최종 loss function을 x,y로 편미분한 값들을 구한다. (chain rule을 통해 편미분 구함) output 값인 loss값이 상수이기 때문에 여기서 local gradient를 구할 수 있고, 이는 이전의 W에 -피드백을 하기 위해 쓰인다.(Gradient가 -여야 아래로 내려가는 방향의 피드백을 할 수 있기 때문에. 그래프를 생각해 보자.) 결론 : 정방향으로 갈 때는 모델에 데이터가 지나가면서 최종 학습 결과를 내놓는다. 역방향으로 갈 때는 최종 학습 결과와 loss값을 이용해서 각 레이어 사이의 weight값을 조정한다. 왔다 갔다, 핑퐁핑퐁. 후기 아침에 진짜 읽어볼 양이 많았다. 노드를 수행하기가 좀 버거웠고, 아침에 약한 타입임을 다시 한번 느꼈다. 이런. 오후 시간은 Backpropagation이 왜 이루어지는지 드디어 알아냈다! 학부시간에 주입식으로 들었던 시간들이 억울할 지경이다. 오늘도 이렇게 한발짝 나아간다.</summary></entry><entry><title type="html">[aiffel] Day 9</title><link href="/2021/01/08/AIFFEL-DAY-9.html" rel="alternate" type="text/html" title="[aiffel] Day 9" /><published>2021-01-08T00:00:00+09:00</published><updated>2021-01-08T00:00:00+09:00</updated><id>/2021/01/08/%5BAIFFEL%5D-DAY-9</id><content type="html" xml:base="/2021/01/08/AIFFEL-DAY-9.html"></content><author><name>Hyemi Jeong</name></author><summary type="html"></summary></entry></feed>
