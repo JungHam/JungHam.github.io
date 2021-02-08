@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="ko-KR">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[aiffel] Day 20 - Hello, UserErrorWorld!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[aiffel] Day 22 - Hello, UserErrorWorld!</title>
 
-<meta name="description" content="CS231n-05포스팅이 매우 격조했습니다. 한동안 컨디션이 매우 안좋았기 때문이죠. 주말동안 푹 쉰 건 아니지만 잘 먹어서 좀 나아진 듯 합니다. 매일 매일 기록하자! 가 모토인데 이제는 매일 매일 잠 잘 자고, 잘 따라가고, 적극적인 자세로 임하는 것이 목표가 되었습니다. 여러...">
-<link rel="canonical" href="/2021/01/25/AIFFEL-DAY-20.html"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="파이썬을 해봅시다오전 기초 과정에서는 파이썬 문법 심화, 오후 풀잎 시간에는 파이썬 공부 및 코테 풀어보기(프로그래머스)를 진행했다.오늘 주목한 것 : immutable vs mutable그래서 코드를 직접 짜봐서 테스트를 해봤다.print("make 2 tuple variable...">
+<link rel="canonical" href="/2021/01/27/AIFFEL-DAY-22.html"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -279,121 +279,93 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[aiffel] Day 20</h1></header><span class="split-space">&nbsp;</span>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[aiffel] Day 22</h1></header><span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
             title="Github에서 확인하기"
-            href="https://github.com/JungHam/JungHam.github.io/tree/master/_posts/2021-01-25-[AIFFEL]-DAY-20.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[aiffel] Day 20"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 25일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-25T00:00:00+09:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            href="https://github.com/JungHam/JungHam.github.io/tree/master/_posts/2021-01-27-[AIFFEL]-DAY-22.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[aiffel] Day 22"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 27일</span>
+            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-27T00:00:00+09:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><h1 id="cs231n-05">CS231n-05</h1>
+<div class="article__content" itemprop="articleBody"><h1 id="파이썬을-해봅시다">파이썬을 해봅시다</h1>
 
-<p>포스팅이 매우 격조했습니다. 한동안 컨디션이 매우 안좋았기 때문이죠. 주말동안 푹 쉰 건 아니지만 잘 먹어서 좀 나아진 듯 합니다. 매일 매일 기록하자! 가 모토인데 이제는 매일 매일 잠 잘 자고, 잘 따라가고, 적극적인 자세로 임하는 것이 목표가 되었습니다. 여러분, 건강하세요.</p>
+<p>오전 기초 과정에서는 파이썬 문법 심화, 오후 풀잎 시간에는 파이썬 공부 및 코테 풀어보기(프로그래머스)를 진행했다.</p>
 
-<p>오늘의 그림 출처는 여기 : https://cding.tistory.com/5</p>
+<p>오늘 주목한 것 : immutable vs mutable</p>
 
-<h4 id="convnets의-원리">ConvNets의 원리</h4>
+<p>그래서 코드를 직접 짜봐서 테스트를 해봤다.</p>
 
-<p>4강을 들은 것을 정리를 안했는데, 4강 맨 끝에서 Fully Connected Layer에 대한 개념이 나온다. 그래서 잠깐 4강 끝에서 나왔던 Fully Connected Function에 대한 개념을 짚고 넘어가려고 한다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"make 2 tuple variable"</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"assign new tuple at the other tuple"</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Is it possible to reassign new tuple to original variable?"</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="k">try</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"How about change the element of tuple"</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">except</span> <span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"this expression is invaild"</span><span class="p">)</span>
+</code></pre></div></div>
 
-<h4 id="fully-connected-function">Fully Connected Function</h4>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make 2 tuple variable
+139912658793168 139912658793168
+assign new tuple at the other tuple
+(1, 2, 3)
+(1, 2, 3, 4)
+139912658793168 139912658652336
+Is it possible to reassign new tuple to original variable?
+(1, 2, 3, 4)
+139912658652912
+How about change the element of tuple
+this expression is invaild
+</code></pre></div></div>
 
-<p>layer에 대한 input을 벡터 x라고 했을때 선형 함수의 형태로 score function을 구한다.</p>
+<p>tuple은 ‘변경이 불가능한’ 자료구조다. 실제로 index로 원소에 접근해서 tuple을 조작하려고 할 때, 에러가 난다. 하지만 tuple에 새 원소를 더해서 다른 변수에 할당하는 것은 가능하다. 이로써 파이썬에서의 ‘변수’는 메모리 공간을 가리키는 역할을 하고, 이 메모리 공간에 변수를 사용해서 접근한 후 그 공간을 변경가능한지 여부가 immutable과 mutable을 나눈다고 결론지었다.</p>
 
-<p><img src="https://t1.daumcdn.net/cfile/tistory/9955C8425B5741051C" alt="img" /></p>
+<p>C++에서 리스트의 경우 각 리스트는 포인터의 연속이고, 각 포인터가 가리키는 메모리 공간은 불연속성을 띌 수도 있다고 배웠는데 파이썬의 리스트의 원소들은 메모리를 가리키는 포인터의 연속이고, 이 포인터를 통해 메모리에 접근해서 메모리가 담고 있는 값을 변경가능하다.</p>
 
-<p>레이어 하나를 거치는 것은 W1을 곱하는 것이고, W2를 곱하게 되면 레이어 하나를 더 거치게 되는 것이다. 이 때, 다음 레이어로 가기 전에 그 전의 레이어의 결과물을 정제한다. 위의 그림에서 max 함수가 이런 역할을 하게 되며, 이를 <strong>activation function</strong>이라고 한다. activation function은 비선형 함수를 쓰게 되며,  비선형 함수의 종류는 다음과 같다.</p>
+<p>참고 : https://bearwoong.tistory.com/85</p>
 
-<p><img src="https://t1.daumcdn.net/cfile/tistory/99EB714D5B57410D16" alt="img" /></p>
+<p>그리고 풀어본 문제는 이것!</p>
 
-<p>왜 비선형 함수를 쓰게 되냐면, 만약 이 때도 선형함수를 쓰게 되면 중간 결과값에 대해 가중치를 제대로 줄 수 없기 때문이다. 이 전에 인간의 신경망에 대한 설명이 나오는데, 차라리 역치 개념을 써놨더라면 ‘아. 신경망과 인공 지능망은 이런 공통점이 있구나!’ 라고 이해했을 걸…</p>
+<ol>
+  <li>https://programmers.co.kr/learn/courses/30/lessons/12915</li>
+  <li>https://programmers.co.kr/learn/courses/30/lessons/12916</li>
+  <li>https://programmers.co.kr/learn/courses/30/lessons/64061</li>
+</ol>
 
-<blockquote>
-  <p>하나의 레이어는 여러 개의 노드로 이루어져 있다. 레이어에 속한 하나의 노드에서는 다음과 같은 행동이 발생한다.  (이전 노드의 결과값) * (노드와 노드 간의 가중치)의 결과값 들을 받아들여 모두 더한다.(Wx, linear) 그리고 이 값에 activation함수를 적용해서 다음 노드로 전할 값을 결정한다.(non-linear)</p>
-</blockquote>
+<p>파이썬 람다식에 대한 공부가 더 필요할 듯 하다. 람다식을 쓰면 정렬을 할 때 기준을 내 마음대로 할 수 있다.</p>
 
-<p>해당 구조에서 Layer를 여러개 두면 어떻게 될까? 다음과 같은 결과가 나오겠지.</p>
+<p>그리고 파이썬 빈 리스트을 초기화하는 방법에 대해서 다양한 방법들이 있는 듯 한데, 3번 문제는 다 풀어놓고 빈 배열을 간파해서 계속 out of range 에러가 났었다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">(output) = Wn * max(Wn-1 * max(Wn-2...W2 * max(W1 * x, 0),0),0) (여기서 output layer는 마지막 layer의 노드수 * 1의 크기를 가지는 Wn을 통해 도출된다.)</code></p>
+<p>파이썬 정렬 시 sort함수는 원형 데이터를 바로 정렬하고, sorted함수는 원형을 보존하고 정렬 결과를 반환한다.  sorted함수에는 정렬 기준을 따로 줄 수 있는데, 람다식을 이용해서 1순위 기준, 2순위 기준을 한꺼번에 줄 수 있다.</p>
 
-<p>이렇게 되면 해당 layer에 있는 모든 노드들은 다음 노드에 관여하게 되는 구조가 나온다. 그래서 Fully Connected Layer라고 부른다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sorted</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">strings</span><span class="p">),</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">strings</span> <span class="p">:</span> <span class="n">strings</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+</code></pre></div></div>
 
-<p><img src="https://t1.daumcdn.net/cfile/tistory/99DC70435B57410D02" alt="img" /></p>
+<p>이렇게 쓴 식을</p>
 
-<p>이제 다시 돌아가서, 5강의 처음은 Fully Connected Layer(<strong>Dense layer</strong>)에 대한 아이디어로부터 출발하게 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">answer</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">strings</span> <span class="p">:</span> <span class="p">(</span><span class="n">strings</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="p">,</span><span class="n">strings</span><span class="p">))</span>
+</code></pre></div></div>
 
-<h4 id="convolutional-neural-networks의-시작">Convolutional Neural Networks의 시작</h4>
+<p>이렇게 다중 조건을 줄 수 있다.</p>
 
-<p><img src="https://t1.daumcdn.net/cfile/tistory/991CF9415B61925C1A" alt="img" /></p>
+<p>그리고 파이썬의 리스트 초기화에 대해서 알아봤는데 내가 쓴 방법은 이거였다.</p>
 
-<p>행렬 곱은 (3072 x 1) * (10 x 3072) = (1 * 10) 이 나오게 된다. 이전 시간에 배웠던 Fully Connected Network의 원리를 생각해 보면 모든 input값은 다음 노드로 전달되니까 3072 x 1의 형태로 만든 것이고, hidden layer는 하나, class는 10개라서 output layer 모습이 1 * 10이 된다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+</code></pre></div></div>
 
-<p>그렇다면 Convolutional Neural Network는 Fully Connected Layer에서 어떻게 나아갔을까?</p>
+<p>그리고 list는 동적할당인데, numpy array는 정적할당이다! 조심할 것.</p>
 
-<p>데이터의 특성을 잘 반영하기 위해서 <strong>filter</strong>의 개념을 도입했다.</p>
-
-<p>경험이 쌓이면 도움이 된다더니, 예전에 막내 국어 문제 풀어줄 때 나왔던 지문이 도움이 될 줄이야.</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/9989CC495D342D2D2A" alt="img" /></p>
-
-<p>해당 문제는 2018년도 고2 모의평가 3월에 나왔던 지문인데, 풀어주면서도 ‘이걸 애들이 시간내에 풀 수 있을 거라고?’ 하며 연신 고개를 주억거렸던 기억이 난다. 이 그림은 필터를 통해 어떻게 이미지의 특성을 잡아내는지 그 예시를 들었다. 이 다음에 이 이미지를 보고 알맞게 추론한 것을 고르시오. 라는 문제와 함께 그림이 함께 나오는 예시가 나와서 명확히 기억한다.</p>
-
-<p>필터는 이미지의 좌상단부터 훑는다. 그리고 필터의 모든 요소를 가지고 내적을 하며, 하나의 값을 얻게 된다. 이 과정이 위 그림의 첫번째 줄에 해당한다. 이 연산의 결과를 activation map에 저장하게 된다.</p>
-
-<p>32x32x3을 5x5x3의 필터와 활성화 함수로 훑었을 때, 28x28x3의 activation map이 나온다.(n칸씩 뗄 지는 파라미터로 결정 =&gt; stride라고 한다.)</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/990AEF335B61926033" alt="img" /></p>
-
-<p>정리하면 하나의 CNN은 filtering과 activation을 거친다. 그리고 하나의 activation map은 input data의 한 특성을 나타낸다. 바로 이렇게. 이 과정들을 반복하면  low-level features -&gt; mid-level features -&gt; high-level features 순으로 추출할 수 있다.</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/9987664E5B61D3FD07" alt="img" /></p>
-
-<p>그래서 전체적인 Convolutional Neural Network는 다음과 같이 생겼다.</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/99546A3F5B61926206" alt="img" /></p>
-
-<p>그런데 아까전의 예시에서는 한칸씩 필터를 밀었다. 필터를 한칸씩 말고 n칸씩 밀 수 있지 않을까? 이 때 어정쩡하게 남는 부분은 잘리게 되지 않을까? 그리고 input 데이터의 가장자리는 중앙보다 반영되는 횟수가 적지 않을까? 또 n칸씩 확 확 밀면 Layer 몇 개만 거쳐도 중간 값의 차원이 확 줄지 않을까?</p>
-
-<p>그래서 <strong>Padding</strong>의 개념이 나오게 된다. Padding은 원본 데이터의 가장자리에 0으로 채운 행과 열을 더함으로써 위의 두가지 문제를 해결하게 된다.</p>
-
-<p>테두리에 padding을 준다 : (N-F)/(stride+1). padding은 0으로 채운다.</p>
-
-<p>그리고 중간에 이해 안가는 부분이 있어서 데려와봤다.</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/99CD73375B61D6EF18" alt="img" /></p>
-
-<p>필터를 언급할 때 input 데이터의 depth에 대해서는 생략하고 얘기하더라. 적어도 해당 강의에서는. 그래서 조원들이랑 공부할 때 더더욱 헷갈렸다. 그림을 해석하면 다음과 같다.</p>
-
-<ul>
-  <li>1x1 conv with 32 filters : 1x1x64의 filter를 사용하며, 이를 32번 반복한다.</li>
-  <li>결과값 56 x56 x 32 : 1x1x64를 한칸씩 밀어서 필터를 적용하고, 이에 activation function을 적용해서 만든 activation map의 크기는 56x56x1인데 이 과정을 32번 반복했으니까 depth는 32.</li>
-</ul>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/9957CE405B61D6F10C" alt="img" /></p>
-
-<p>해당 그림을 보니까 이전의 그림이 더 명확하게 이해되는데, 5개의 다른 필터를 사용해서 이 결과를 쌓으면 depth가 늘어난다. 그래. 필터를 다른 것을 쓴다고 얘기를 했어야지. 이 때 <code class="language-plaintext highlighter-rouge">필터 = 신경</code> 이렇게 치환해서 생각해보자.</p>
-
-<h4 id="pooling">Pooling</h4>
-
-<p>하지만 이 사이즈를 유지한 채로 계속해서 연산하게 된다면, 이는 성능에 영향을 주게 된다. 그래서 Pooling을 통해 Downsampling을 하게 된다.</p>
-
-<p><img src="https://t1.daumcdn.net/cfile/tistory/99C286405B61D6F325" alt="img" /></p>
-
-<p>해당 그림은 Pooling기법 중 Max를 이용하는 Max Pooling에 대해서 설명하고 있다. 간단하다. 해당 영역에서 max값만 뽑아서 다음 값으로 넘긴다. 마치 그림의 해상도를 n분의 1로 줄일 때 처럼 말이다.</p>
-
-<h4 id="fully-connected-layer-in-cnn">Fully Connected Layer in CNN</h4>
-
-<p>해당 레이어는 마지막에 쓰인다. class를 뽑아내야 하기 때문이다. 우리가 앞에서 Fully Connected Layer는 이런 것이라고 정의했기 때문에, 작동 원리를 생각해서 마지막에 이를 적용하게 되면 우리는 1x(클래스의 수) 크기를 가진 벡터를 얻을 수 있음을 알 수 있다.</p>
-
-<h4 id="오늘의-후기">오늘의 후기</h4>
-
-<p>아…진짜…어후…일단 Fully Connected Layer라는 용어를 유심히 보지 못하고 지나간 것이 화근이었다. 내가 기존에 알고 있던 기초적인 신경망 구조를 Fully Connected Layer라고 부르는 것을 몰랐다.</p>
-
-<p>또 구체적인 예시를 들어야 할 때에는 정작 뭉뚱그려서 설명하는 강의의 방식, 표기법을 통일하지 않는 교재, 심지어 누락까지 되어 있어 이해를 더더욱 어렵게 만든다.</p>
-
-<p>이제 확실히 알겠으니까 다음 강의를 기다려 본다. 이상 저번 강의부터 헷갈린 사람의 후기.</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-01-25T00:00:00+09:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-01-27T00:00:00+09:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">구독하기</a></div>
@@ -404,7 +376,7 @@
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2021/01/12/AIFFEL-DAY-11.html">[aiffel] Day 11</a></div><div class="next"><span>다음</span><a href="/2021/01/27/AIFFEL-DAY-22.html">[aiffel] Day 22</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2021/01/25/AIFFEL-DAY-20.html">[aiffel] Day 20</a></div></div></div>
 
 </div>
 
