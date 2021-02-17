@@ -1,0 +1,68 @@
+I"
+<h1 id="코딩마스터">코딩마스터</h1>
+
+<h2 id="프로그래머스">프로그래머스</h2>
+
+<h3 id="12930">12930</h3>
+
+<p>와..! 아니 이거 조심하자</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">str</span> <span class="o">=</span> <span class="s">"Line1-abcdef </span><span class="se">\n</span><span class="s">Line2-abc </span><span class="se">\n</span><span class="s">Line4-abcd"</span><span class="p">;</span>
+<span class="k">print</span> <span class="nb">str</span><span class="p">.</span><span class="n">split</span><span class="p">(</span> <span class="p">)</span>
+<span class="k">print</span> <span class="nb">str</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<p>이거 돌리면 어떻게 되게?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="s">'Line1-abcdef'</span><span class="p">,</span> <span class="s">'Line2-abc'</span><span class="p">,</span> <span class="s">'Line4-abcd'</span><span class="p">]</span>
+<span class="p">[</span><span class="s">'Line1-abcdef'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">Line2-abc </span><span class="se">\n</span><span class="s">Line4-abcd'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>딜리미터가…사라집니다…코드는 ‘명확히’ 짤 것.</p>
+
+<h3 id="42577">42577</h3>
+
+<p>이거는 풀이가 여러 방면으로 나눌 것 같은데, 일단 문제조건을 보면 ‘어떤 번호가 다른 번호의 접두사가 되는 경우’라고 해서 엄청 복잡하게 생각했다. 한 번호가 여러 번호의 접두사가 될 건데, 어떻게 캐치해내지? 시간 복잡도는? 정리하면서 생각한 건데 완전탐색이 가장 일반적으로 생각할 수 있는 답이겠구나 싶다.</p>
+
+<p>그래서 완전탐색을 하되, 좀 더 효율적으로 할 수 있는 방법을 생각했다.  길이별로 먼저 전화번호를 정렬해서 앞의 원소부터 다른 원소의 일부가 되는지를 확인하는 방법이 있었다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solution</span><span class="p">(</span><span class="n">phone_book</span><span class="p">):</span>
+    
+    <span class="n">phone_book</span><span class="p">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="bp">True</span><span class="p">;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">phone_book</span><span class="p">))</span> <span class="p">:</span> 
+        <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="bp">False</span> <span class="p">:</span> 
+            <span class="k">break</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">phone_book</span><span class="p">))</span> <span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">phone_book</span><span class="p">[</span><span class="n">j</span><span class="p">]).</span><span class="n">startswith</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">phone_book</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">:</span>
+            <span class="c1"># 이 짓을 할 게 아니라 걍 phone_book[j]가 string이에요 선생님!
+</span>                    <span class="n">answer</span> <span class="o">=</span> <span class="bp">False</span>
+                    <span class="k">break</span>
+    <span class="k">return</span> <span class="n">answer</span>
+<span class="c1"># 효율성 테스트 1.17ms
+</span></code></pre></div></div>
+
+<p>이게…되네? 여기서  나는 숫자를 글자로 바꾸고 앞 부분을 비교하는 <code class="language-plaintext highlighter-rouge">startswith</code>를 사용했다.</p>
+
+<p>**정정 : ** 전화번호부가 String으로 들어오기 때문에, 중간 과정이 필요없었다. python에서 sort를 쓰면 기본적으로 사전순으로 소팅을 한다.</p>
+
+<h2 id="백준">백준</h2>
+
+<p>ㅎㅎㅎ 백준에서 파이썬을 쓴게 처음이라서, 제출 시도부터가 글렀다. 그리고 의외로 python sort가 cost가 크지 않은게 신기했다. C++에서는 모든 연산에서 cost를 따졌으니까^^</p>
+
+<p>그래서 이번 문제는 어차피 C++로 풀었지만, 다시 한번 python으로 풀면서 이번에는 백준을 쓰면 어떻게 파이썬을 제출해야 하는지 알아보겠습니다.</p>
+
+<h4 id="입력은-어떻게-받을-것인가">입력은 어떻게 받을 것인가</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sys</span> <span class="kn">import</span> <span class="n">stdin</span>
+<span class="c1"># 입력받을 것이 하나
+</span><span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="c1"># 입력받을 것이 여러개
+</span><span class="n">li</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">stdin</span><span class="p">.</span><span class="n">readline</span><span class="p">().</span><span class="n">split</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<p>아 왜 못 풀었는지 알겠다…이거ㅠㅠㅠ 입력받은거 list로 감싸줘야 하는데 map하고 냅둬서 index로 참조를 못하는 상황이었다.</p>
+
+<p>이번에 사용한 온라인 인터프리터는 이거 : https://repl.it/languages/python3</p>
+
+:ET
