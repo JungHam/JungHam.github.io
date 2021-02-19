@@ -1,5 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2021-02-17T21:57:55+09:00</updated><id>/feed.xml</id><title type="html">Hello, UserErrorWorld!</title><subtitle>Your Site Description
-</subtitle><author><name>Hyemi Jeong</name></author><entry><title type="html">[aiffel] Day 34</title><link href="/2021/02/17/AIFFEL-DAY-34.html" rel="alternate" type="text/html" title="[aiffel] Day 34" /><published>2021-02-17T00:00:00+09:00</published><updated>2021-02-17T00:00:00+09:00</updated><id>/2021/02/17/%5BAIFFEL%5D-DAY-34</id><content type="html" xml:base="/2021/02/17/AIFFEL-DAY-34.html">&lt;h1 id=&quot;코딩마스터&quot;&gt;코딩마스터&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko-KR"><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="ko-KR" /><updated>2021-02-19T17:14:33+09:00</updated><id>/feed.xml</id><title type="html">Hello, UserErrorWorld!</title><subtitle>Your Site Description
+</subtitle><author><name>Hyemi Jeong</name></author><entry><title type="html">[aiffel] Day 36</title><link href="/2021/02/19/AIFFEL-DAY-36.html" rel="alternate" type="text/html" title="[aiffel] Day 36" /><published>2021-02-19T00:00:00+09:00</published><updated>2021-02-19T00:00:00+09:00</updated><id>/2021/02/19/%5BAIFFEL%5D-DAY-36</id><content type="html" xml:base="/2021/02/19/AIFFEL-DAY-36.html">&lt;h1 id=&quot;지시딥-준비&quot;&gt;지시딥 준비&lt;/h1&gt;
+
+&lt;h2 id=&quot;부제--밑바닥부터-시작하는-딥러닝-1권-5장&quot;&gt;부제 : 밑바닥부터 시작하는 딥러닝 1권 5장&lt;/h2&gt;
+
+&lt;h3 id=&quot;사전학습&quot;&gt;사전학습&lt;/h3&gt;
+
+&lt;p&gt;일단 앞 부분을 다시 듣고 수식 전개를 해야할 것 같다. 이 부분이 어렵게 느껴지는건 당연하다고 하니 다행이다. 그리고 효율적인 전파와 역전파 계산을 위해 중간 결과값들을 캐시하는게 맞았다. 코드로 어떻게 구현하는 지가 궁금했는데 이렇게 하는거구나…&lt;/p&gt;
+
+&lt;h3 id=&quot;역전파&quot;&gt;역전파&lt;/h3&gt;
+
+&lt;p&gt;역전파가 하는 일은 연쇄 법칙의 원리와 같다&lt;/p&gt;
+
+&lt;p&gt;덧셈 노드의 경우는 미분하면 1이 나와서 1을 역전파로 전해진 값에 곱하는 거라 입력된 값을 그대로 다음 노드로 전하게 된다.&lt;/p&gt;
+
+&lt;p&gt;곱셈 노드의 경우 상류의 값에 순전파 때의 입력 신호들을 서로 바꾼 값을 곱해서 하류로 보낸다. 미분할때 다른 변수는 상수로 취급하니까.&lt;/p&gt;
+
+&lt;p&gt;#### ReLU&lt;/p&gt;
+
+&lt;p&gt;미분하면 입력값이 0보다 클때 1, 0 이하면 0이라서 0 이하로 신호가 들어오면 역전파 때는 더 이상 신호가 전파되지 않는다. (0을 보내버림). 전기 회로의 ‘스위치’ 에 비유할 수 있다고.&lt;/p&gt;
+
+&lt;h4 id=&quot;sigmoid-계층&quot;&gt;Sigmoid 계층&lt;/h4&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;연쇄법칙에 따라서 정리하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;델타y(1-y)&lt;/code&gt;로 정리된다. 와…! 순전파의 출력(y)만으로 계산할 수 있겠군.&lt;/p&gt;
+
+&lt;h4 id=&quot;affine&quot;&gt;Affine&lt;/h4&gt;
+
+&lt;p&gt;신경망의 순전파 때 수행하는 행렬의 곱을 기하학에서는 affine 변환이라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;해당 책의 코드에서는 X * W + B = O로 표현하고 있다. 앞의 계산 그래프들에서는 단일 실수값을 통과시켰는데 이제는 계산 그래프 간에 행렬이 지나가는 것이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;더 알아볼 점 : 행렬이 끼여 있을 때의 미분&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Hyemi Jeong</name></author><summary type="html">지시딥 준비 부제 : 밑바닥부터 시작하는 딥러닝 1권 5장 사전학습 일단 앞 부분을 다시 듣고 수식 전개를 해야할 것 같다. 이 부분이 어렵게 느껴지는건 당연하다고 하니 다행이다. 그리고 효율적인 전파와 역전파 계산을 위해 중간 결과값들을 캐시하는게 맞았다. 코드로 어떻게 구현하는 지가 궁금했는데 이렇게 하는거구나… 역전파 역전파가 하는 일은 연쇄 법칙의 원리와 같다 덧셈 노드의 경우는 미분하면 1이 나와서 1을 역전파로 전해진 값에 곱하는 거라 입력된 값을 그대로 다음 노드로 전하게 된다. 곱셈 노드의 경우 상류의 값에 순전파 때의 입력 신호들을 서로 바꾼 값을 곱해서 하류로 보낸다. 미분할때 다른 변수는 상수로 취급하니까. #### ReLU 미분하면 입력값이 0보다 클때 1, 0 이하면 0이라서 0 이하로 신호가 들어오면 역전파 때는 더 이상 신호가 전파되지 않는다. (0을 보내버림). 전기 회로의 ‘스위치’ 에 비유할 수 있다고. Sigmoid 계층 y = 1 / (1 + exp(-x)) 연쇄법칙에 따라서 정리하면 델타y(1-y)로 정리된다. 와…! 순전파의 출력(y)만으로 계산할 수 있겠군. Affine 신경망의 순전파 때 수행하는 행렬의 곱을 기하학에서는 affine 변환이라고 부른다. 해당 책의 코드에서는 X * W + B = O로 표현하고 있다. 앞의 계산 그래프들에서는 단일 실수값을 통과시켰는데 이제는 계산 그래프 간에 행렬이 지나가는 것이다. 더 알아볼 점 : 행렬이 끼여 있을 때의 미분</summary></entry><entry><title type="html">[aiffel] Day 34</title><link href="/2021/02/17/AIFFEL-DAY-34.html" rel="alternate" type="text/html" title="[aiffel] Day 34" /><published>2021-02-17T00:00:00+09:00</published><updated>2021-02-17T00:00:00+09:00</updated><id>/2021/02/17/%5BAIFFEL%5D-DAY-34</id><content type="html" xml:base="/2021/02/17/AIFFEL-DAY-34.html">&lt;h1 id=&quot;코딩마스터&quot;&gt;코딩마스터&lt;/h1&gt;
 
 &lt;h2 id=&quot;프로그래머스&quot;&gt;프로그래머스&lt;/h2&gt;
 

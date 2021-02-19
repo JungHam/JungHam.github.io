@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="ko-KR">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>홈 - Hello, UserErrorWorld!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>[aiffel] Day 36 - Hello, UserErrorWorld!</title>
 
-<meta name="description" content="Your Site Description
-">
-<link rel="canonical" href="/"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="지시딥 준비부제 : 밑바닥부터 시작하는 딥러닝 1권 5장사전학습일단 앞 부분을 다시 듣고 수식 전개를 해야할 것 같다. 이 부분이 어렵게 느껴지는건 당연하다고 하니 다행이다. 그리고 효율적인 전파와 역전파 계산을 위해 중간 결과값들을 캐시하는게 맞았다. 코드로 어떻게 구현하는 지가...">
+<link rel="canonical" href="/2021/02/19/AIFFEL-DAY-36.html"><link rel="alternate" type="application/rss+xml" title="Hello, UserErrorWorld!" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -255,7 +254,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -274,177 +273,96 @@
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>홈</h1></header><meta itemprop="headline" content="홈"><meta itemprop="author" content="Hyemi Jeong"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/19/AIFFEL-DAY-36.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 36</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">지시딥 준비
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>[aiffel] Day 36</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Github에서 확인하기"
+            href="https://github.com/JungHam/JungHam.github.io/tree/master/_posts/2021-02-19-[AIFFEL]-DAY-36.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="[aiffel] Day 36"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 02월 19일</span>
+            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-02-19T00:00:00+09:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
-부제 : 밑바닥부터 시작하는 딥러닝 1권 5장
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><h1 id="지시딥-준비">지시딥 준비</h1>
 
-사전학습
+<h2 id="부제--밑바닥부터-시작하는-딥러닝-1권-5장">부제 : 밑바닥부터 시작하는 딥러닝 1권 5장</h2>
 
-일단 앞 부분을 다시 듣고 수식 전개를 해야할 것 같다. 이 부분이 어렵게 느껴지는건 당연하다고 하니 다행이다. 그리고 효율적인 전파와 역전파 계산을 위해 중간 결과값들을 캐시하는게 맞았다. 코드로 어떻게 구현하는 지가 궁금했는데 이렇게 하는거구나…
+<h3 id="사전학습">사전학습</h3>
 
-역전파
+<p>일단 앞 부분을 다시 듣고 수식 전개를 해야할 것 같다. 이 부분이 어렵게 느껴지는건 당연하다고 하니 다행이다. 그리고 효율적인 전파와 역전파 계산을 위해 중간 결과값들을 캐시하는게 맞았다. 코드로 어떻게 구현하는 지가 궁금했는데 이렇게 하는거구나…</p>
 
-역전파가 하는 일은 연쇄 법칙의 원리와 같다
+<h3 id="역전파">역전파</h3>
 
-덧셈 노드의 경우는 미분하면 1이 나와서 1을 역전파로 전해진 값에 곱하는 거라 입력된 값을 그대로 다음 노드로 전하게 된다.
+<p>역전파가 하는 일은 연쇄 법칙의 원리와 같다</p>
 
-곱셈 노드의 경우 상류의 값에 순전파 때의 입력 신호들을 서로 바꾼 값을 곱해서 하류로 보낸다. 미분할때 다른 ...</div><p><a href="/2021/02/19/AIFFEL-DAY-36.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 02월 19일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-02-19T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/17/AIFFEL-DAY-34.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 34</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">코딩마스터
+<p>덧셈 노드의 경우는 미분하면 1이 나와서 1을 역전파로 전해진 값에 곱하는 거라 입력된 값을 그대로 다음 노드로 전하게 된다.</p>
 
-프로그래머스
+<p>곱셈 노드의 경우 상류의 값에 순전파 때의 입력 신호들을 서로 바꾼 값을 곱해서 하류로 보낸다. 미분할때 다른 변수는 상수로 취급하니까.</p>
 
-12930
+<p>#### ReLU</p>
 
-와..! 아니 이거 조심하자
+<p>미분하면 입력값이 0보다 클때 1, 0 이하면 0이라서 0 이하로 신호가 들어오면 역전파 때는 더 이상 신호가 전파되지 않는다. (0을 보내버림). 전기 회로의 ‘스위치’ 에 비유할 수 있다고.</p>
 
-str = "Line1-abcdef \nLine2-abc \nLine4-abcd";
-print str.split( )
-print str.split(' ', 1 )
+<h4 id="sigmoid-계층">Sigmoid 계층</h4>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+</code></pre></div></div>
 
-이거 돌리면 어떻게 되게?
+<p>연쇄법칙에 따라서 정리하면 <code class="language-plaintext highlighter-rouge">델타y(1-y)</code>로 정리된다. 와…! 순전파의 출력(y)만으로 계산할 수 있겠군.</p>
 
-['Line1-abcdef', 'Line2-abc', 'Line4-abcd']
-['Line1-abcdef', '\nLine2-abc \nLine4-abcd']
+<h4 id="affine">Affine</h4>
 
+<p>신경망의 순전파 때 수행하는 행렬의 곱을 기하학에서는 affine 변환이라고 부른다.</p>
 
-딜리미터가…사라집니다…코드는 ‘명확히’ 짤 것.
+<p>해당 책의 코드에서는 X * W + B = O로 표현하고 있다. 앞의 계산 그래프들에서는 단일 실수값을 통과시켰는데 이제는 계산 그래프 간에 행렬이 지나가는 것이다.</p>
 
-42577
+<ul>
+  <li>더 알아볼 점 : 행렬이 끼여 있을 때의 미분</li>
+</ul>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2021-02-19T00:00:00+09:00"><!-- start custom article footer snippet -->
 
-이거는 풀이가 여러 방면으로 나눌 것 같은데, 일단 문제조건을 보면 ‘어떤 번호가 다른 번호의 접두사가 되는 경우’라고 해서 엄청 ...</div><p><a href="/2021/02/17/AIFFEL-DAY-34.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 02월 17일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-02-17T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/15/AIFFEL-DAY-32.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 32</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">CS231n 7강
+<!-- end custom article footer snippet -->
+<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">구독하기</a></div>
+</div><div class="article__license"><div class="license">
+    <p>이 글의 저작권은 <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> 라이센스를 따릅니다.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+      </a>
+    </p>
+  </div></div></footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>이전</span><a href="/2021/02/17/AIFFEL-DAY-34.html">[aiffel] Day 34</a></div></div></div>
 
-저번시간 복습
+</div>
 
-internal covariant : 데이터 간의 분포가 달라지면 학습 결과가 달라질 수 있다.
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-Batch Normalization의 위치 : non-linearble 연산이 필요한 경우
-
-그래서 normalization하는 단계는 2단계(normalization -&gt; network 학습 변수 적용)
-
-모멘텀 기법 + gradient squared term
-
-vx = 0
-while True :
-    dx = compute_gradient(x)
-    vx = rho * vx + dx
-    x += learning_rate * vx
-
-
-여기서 rho값이 velocity의...</div><p><a href="/2021/02/15/AIFFEL-DAY-32.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 02월 15일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-02-15T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/08/AIFFEL-DAY-29.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 29</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">항상 gem과 jekyll이 문제다. 분명 그전날 세팅 다 했는데 다음날 충돌하는 모양을 보고 있노라면, 매우 허무해진다. 그래서 ruby부터 다시 깔았으므로, 다음에 충돌이 날 때는 어쩔 수 없다. PATH 확인하고, bundle이 의존하는 ruby를 에러메세지에서 주의깊게 살펴본 후 도저히 안되면 날려버리고 새로 세팅하라.
-
-CS231n-06
-
-Batch normalization
-
-배치로 얻은 데이터가 나왔을 때, 각 배치의 평균과 분산을 통해 normalization 수행.
-
-각 차원에서 평균과 분산을 구하고, 여기서 normalization을 수행한다. 보통 FC나 Convolutional layers 이후...</div><p><a href="/2021/02/08/AIFFEL-DAY-29.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 02월 08일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-02-08T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/01/27/AIFFEL-DAY-22.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 22</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">파이썬을 해봅시다
-
-오전 기초 과정에서는 파이썬 문법 심화, 오후 풀잎 시간에는 파이썬 공부 및 코테 풀어보기(프로그래머스)를 진행했다.
-
-오늘 주목한 것 : immutable vs mutable
-
-그래서 코드를 직접 짜봐서 테스트를 해봤다.
-
-print("make 2 tuple variable")
-a = tuple([1,2,3])
-b = a
-print(id(a), id(b))
-print("assign new tuple at the other tuple")
-b = a + (4,)
-print(a)
-print(b)
-print(id(a), id(b))
-print("Is it possible to reassign new ...</div><p><a href="/2021/01/27/AIFFEL-DAY-22.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 27일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-27T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/01/25/AIFFEL-DAY-20.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 20</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">CS231n-05
-
-포스팅이 매우 격조했습니다. 한동안 컨디션이 매우 안좋았기 때문이죠. 주말동안 푹 쉰 건 아니지만 잘 먹어서 좀 나아진 듯 합니다. 매일 매일 기록하자! 가 모토인데 이제는 매일 매일 잠 잘 자고, 잘 따라가고, 적극적인 자세로 임하는 것이 목표가 되었습니다. 여러분, 건강하세요.
-
-오늘의 그림 출처는 여기 : https://cding.tistory.com/5
-
-ConvNets의 원리
-
-4강을 들은 것을 정리를 안했는데, 4강 맨 끝에서 Fully Connected Layer에 대한 개념이 나온다. 그래서 잠깐 4강 끝에서 나왔던 Fully Connected Function에 대한 개념을 짚고 ...</div><p><a href="/2021/01/25/AIFFEL-DAY-20.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 25일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-25T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/01/12/AIFFEL-DAY-11.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 11</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">20210112
-
-부제 : 스티커 사진 프로그램 만들기
-
-오늘 노드에서는 얼굴 인식의 방법과 얼굴 인식 결과를 간단하게 응용해서 얼굴에 스티커를 붙이는 프로그램을 작성했다.
-
-OpenCV의 기능들을 사용하는 게 중요했는데, OpenCV가 처리하는 이미지 데이터의 원하는 부분에 제대로 접근하려면 좌표 개념이 매우 중요하다. OpenCV는 행렬의 방식으로 데이터를 표현하고 있기 때문에, y축을 먼저 기술하고 x축을 기술하게 되며, 좌상단이 원점이다.
-
-
-
-이 좌표가 오늘의 핵심 키포인트. tmi로 계속 3차원 데이터를 다루다가 2차원 데이터를 다루게 되니 조금 어색했다. 3차원 좌표계는 또 달라서…
-
-그리고 HOG 모...</div><p><a href="/2021/01/12/AIFFEL-DAY-11.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 12일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-12T00:00:00+09:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/01/11/AIFFEL-DAY-10.html"><h2 itemprop="headline" class="item__header">[aiffel] Day 10</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">20210111
-
-오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다.
-
-CS231n-03-02
-
-Optimization
-
-계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까.
-
-loss를 줄이는 방법은 Random search 방법이 있다.  (정확도 15.5퍼센트 정도 나온다고…)
-
-두 번째 방법으로 경사의 기울기에 따라서 길을 찾아볼까?(NN, Lin...</div><p><a href="/2021/01/11/AIFFEL-DAY-10.html">더보기</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2021년 01월 11일</span>
-            </li></ul></div><meta itemprop="author" content="Hyemi Jeong"/><meta itemprop="datePublished" content="2021-01-11T00:00:00+09:00"></div>
-      </article></div>
-</div><div class="layout--home"><div class="pagination"><p>전체 글 9개, 2 페이지</p>
-    <div class="pagination__menu">
-      <ul class="menu menu--nowrap"><li><div class="button button--secondary button--circle disabled">
-            <i class="fas fa-angle-left"></i>
-          </div></li><li>
-              <div class="button button--primary button--circle focus"><span>1</span></div>
-            </li><li>
-                <a class="button button--secondary button--circle" href="/page2"><span>2</span></a>
-              </li><li><a class="button button--secondary button--circle" href="/page2">
-            <i class="fas fa-angle-right"></i>
-          </a></li></ul>
-    </div>
-  </div></div>
-<script>/*(function () {
-
-})();*/
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
 </script>
-
-
-
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
@@ -982,6 +900,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {
