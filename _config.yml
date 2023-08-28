@@ -182,6 +182,7 @@ analytics:
 markdown    : kramdown
 highlighter : rouge
 permalink   : date
+theme: minimal-mistakes-jekyll
 
 exclude:
   - CHANGELOG.md
