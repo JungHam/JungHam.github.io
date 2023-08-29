@@ -1,6 +1,6 @@
 var store = [{
         "title": "[AIFFEL] DAY 10",
-        "excerpt":"20210111 오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다. CS231n-03-02 Optimization 계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까. loss를 줄이는 방법은...","categories": ["Blog"],
+        "excerpt":"20210111 오전 : 머신러닝이란? 딥러닝이란? 에서 출발하는 질문들을 점차 심층적으로 내려가는 질문들의 사례를 보았다. CS231n-03-02 Optimization 계곡에 있다고 생각하고, 우리는 계곡의 가장 낮은 밑바닥을 찾아내는 것이 목적이다. 지금 우리가 있는 곳의 높이가 loss, 그리고 밑바닥을 찾아가는 여정이 optimization과정이 된다. 풍경은 파라미터 W를 의미한다. W는 loss에 따라서 달라지니까. loss를 줄이는 방법은...","categories": ["blog"],
         "tags": ["AI","AIFFEL","MODULAB"],
         "url": "/blog/AIFFEL-DAY-10/",
         "teaser": null
