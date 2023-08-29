@@ -17,5 +17,5 @@ gem "forwardable-extended", "~> 2.6"
 group :jekyll_plugins do
     gem "jekyll-archives"
 end
-gemspec
+
 
