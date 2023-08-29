@@ -1,0 +1,14 @@
+Hyemi Jeong : 
+  name      : Hyemi Jeong
+  url       :
+  avatar    : # path or url of avatar image (square)
+  bio       : To see the beyond of my limit
+  location : Daejeon, Korea
+  email     : 
+  links : 
+    - label : 'GitHub'
+      icon: "fab fa-fw fa-github"
+      url : "https://github.com/jungham"
+
+
+author: Hyemi Jeong

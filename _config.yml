@@ -16,13 +16,41 @@
 
 ## => Site Settings
 ##############################
-text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
-highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: "default"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
 title   : Hello, UserErrorWorld!
-description: > # this means to ignore newlines until "Language & timezone"
-  Your Site Description
+description: "Welcome to the GIS traveler's home!"
+
+defaults:
+  - scope: 
+      path: ""
+      type : tag
+    values:
+      author_profile: true
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      sharing: true
+      license: true
+      show_date : true
+      date_format : "%Y-%m-%d"
+      aside:
+        toc: true
+      read_time : true 
+      words_per_minute : 200
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
+      search : true
+      lunr:
+        search_within_pages: true
+      author_profile: true
+      share: true
+      related: true
 
 
 ## => Language and Timezone
@@ -34,23 +62,33 @@ timezone: Asia/Seoul
 ## => Author and Social
 ##############################
 author:
-  type      : # "person" (default), "organization"
-  name      : Hyemi Jeong
-  url       :
-  avatar    : # path or url of avatar image (square)
-  bio       : 
-  email     :
-  facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
-  twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
-  weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
-  googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
-  telegram  : # "user_name" the last part of your profile url, e.g. https://t.me/user_name
-  medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
-  zhihu     : # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
-  douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
-  linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name
-  github    : # "user_name" the last part of your profile url, e.g. https://github.com/user_name
-  npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
+  name      : "Hyemi Jeong"
+  url       : #
+  avatar    : "/assets/images/bio-photo.jpg"
+  bio       : "To see the beyond of my limit"
+  location : "Daejeon, Korea"
+  email     : 
+  links : 
+    - label : 'GitHub'
+      icon: "fab fa-fw fa-github"
+      url : "https://github.com/jungham"
+
+category_archive:
+  type: jekyll-archives
+  path: /categories/
+tag_archive:
+  type: jekyll-archives
+  path: /tags/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
@@ -62,7 +100,7 @@ repository_tree: master
 ## => Paths
 ##############################
 paths:
-  root    : # title link url, "/" (default)
+  root    : "/"
   home    : # home layout url, "/" (default)
   archive : # "/archive.html" (default)
   rss     : # "/feed.xml" (default)
@@ -182,7 +220,7 @@ analytics:
 markdown    : kramdown
 highlighter : rouge
 permalink   : date
-theme: minimal-mistakes-jekyll
+
 
 exclude:
   - CHANGELOG.md
@@ -202,19 +240,6 @@ exclude:
   - /test
   - /vendor
 
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: article
-      sharing: true
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: true
-      show_subscribe: true
-      pageview: true
 
 
 ## => Plugins
@@ -223,4 +248,4 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
-  - jemoji
+  - jekyll-archives
